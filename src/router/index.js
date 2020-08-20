@@ -8,7 +8,7 @@ const routes = [
         path: '/',
         component: (resolve) => require(['@/views/layout/index'], resolve)
     },
-     {
+    {
         path: '/login',
         component: (resolve) => require(['@/views/login/index'], resolve)
     },
