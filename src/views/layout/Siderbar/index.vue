@@ -15,11 +15,13 @@
           <div v-for="item in menuList" :key="item.node">
             <el-submenu :index="item.node">
               <template slot="title">
-                <i :class="item.icon"></i>
+                <i class="icon-title" :class="item.icon"></i>
                 <span>{{ item.name }}</span>
               </template>
               <div v-for="sesstion in item.children" :key="sesstion.node">
-                <el-menu-item :index="sesstion.node">{{ sesstion.name }}</el-menu-item>
+                <el-menu-item :index="sesstion.node">{{
+                  sesstion.name
+                }}</el-menu-item>
               </div>
             </el-submenu>
           </div>
@@ -39,8 +41,8 @@ export default {
           icon: "el-icon-setting",
           children: [
             { name: "系统设置1", node: "1-1" },
-            { name: "系统设置2", node: "1-2" }
-          ]
+            { name: "系统设置2", node: "1-2" },
+          ],
         },
         {
           name: "组件管理",
@@ -50,10 +52,10 @@ export default {
             { name: "组件管理1", node: "2-1" },
             { name: "组件管理2", node: "2-2" },
             { name: "组件管理3", node: "2-3" },
-            { name: "组件管理4", node: "2-4" }
-          ]
-        }
-      ]
+            { name: "组件管理4", node: "2-4" },
+          ],
+        },
+      ],
     };
   },
   methods: {
@@ -62,8 +64,8 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -81,16 +83,19 @@ export default {
     border: none;
     height: 100%;
     width: 100% !important;
-    .el-submenu {
+    /deep/ .el-submenu {
       text-align: left !important;
+      &.is-active {
+        .el-submenu__title {
+          color: #f4f4f5 !important;
+          .icon-title {
+            color: #f4f4f5 !important;
+          }
+        }
+      }
     }
-    // & .is-active {
-    //   & > .el-submenu__title {
-    //     color: #f4f4f5 !important;
-    //   }
-    // }
 
-    & .el-submenu .el-menu-item {
+    .el-submenu .el-menu-item {
       background-color: #1f2d3d !important;
       // background-color: #409eff !important;
 
