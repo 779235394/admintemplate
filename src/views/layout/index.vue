@@ -1,10 +1,10 @@
 <template>
   <el-container class="container">
-    <sider-bar></sider-bar>
+    <SiderBar></SiderBar>
     <el-container class="main-container">
-      <hea-der></hea-der>
-      <ma-in></ma-in>
-      <foo-ter></foo-ter>
+      <HeaDer></HeaDer>
+      <MaIn></MaIn>
+      <!-- <foo-ter></foo-ter> -->
     </el-container>
   </el-container>
 </template>
@@ -18,13 +18,13 @@ export default {
     SiderBar,
     HeaDer,
     FooTer,
-    MaIn
+    MaIn,
   },
   data() {
     return {};
   },
 
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style scoped>

@@ -2,7 +2,7 @@
   <div class="navbar">
     <hamburger
       id="hamburger-container"
-      :is-active="sidebarOpened"
+      :is-active="!sidebarOpened"
       class="hamburger-container"
       @toggleClick="toggleSideBar"
     />
@@ -13,21 +13,21 @@ import Hamburger from "@/components/Hamburger";
 
 export default {
   components: {
-    Hamburger
+    Hamburger,
   },
   computed: {
     sidebarOpened: function() {
       return this.$store.state.app.sidebar.opened;
-    }
+    },
   },
   methods: {
     toggleSideBar() {
       this.$store.dispatch("app/toggleSideBar");
-    }
-  }
+    },
+  },
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .navbar {
   height: 50px;
   overflow: hidden;

@@ -2,12 +2,12 @@ const app = {
   namespaced: true,
   state: {
     sidebar: {
-      opened: true,
+      opened: false,
     },
   },
   mutations: {
-    TOGGLE_SIDEBAR: state => {
-      state.sidebar.opened = !state.sidebar.opened
+    TOGGLE_SIDEBAR: (state) => {
+      state.sidebar.opened = !state.sidebar.opened;
       // if (state.sidebar.opened) {
       //   Cookies.set('sidebarStatus', 1)
       // } else {
@@ -17,12 +17,10 @@ const app = {
   },
   actions: {
     toggleSideBar({ commit }) {
-      commit('TOGGLE_SIDEBAR')
-    }
+      commit("TOGGLE_SIDEBAR");
+    },
   },
-  getters: {
-
-  }
+  getters: {},
 };
 
 export default app;

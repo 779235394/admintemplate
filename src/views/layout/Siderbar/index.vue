@@ -1,34 +1,37 @@
 <template>
-  <el-aside width="200px">
-    <div class="sidebar-container">
-      <el-scrollbar wrap-class="scrollbar-wrapper">
-        <el-menu
-          default-active="1-1"
-          @open="handleOpen"
-          @close="handleClose"
-          background-color="#304156"
-          text-color="#bfcbd9"
-          active-text-color="#409EFF"
-          :unique-opened="true"
-          :collapse-transition="false"
-        >
-          <div v-for="item in menuList" :key="item.node">
-            <el-submenu :index="item.node">
-              <template slot="title">
-                <i class="icon-title" :class="item.icon"></i>
-                <span>{{ item.name }}</span>
-              </template>
-              <div v-for="sesstion in item.children" :key="sesstion.node">
-                <el-menu-item :index="sesstion.node">{{
-                  sesstion.name
-                }}</el-menu-item>
-              </div>
-            </el-submenu>
-          </div>
-        </el-menu>
-      </el-scrollbar>
-    </div>
-  </el-aside>
+  <div :class="isCollapse ? 'hideSidebar' : ''">
+    <el-aside width="auto">
+      <div class="sidebar-container">
+        <el-scrollbar wrap-class="scrollbar-wrapper">
+          <el-menu
+            default-active="1-1"
+            @open="handleOpen"
+            @close="handleClose"
+            background-color="#304156"
+            text-color="#bfcbd9"
+            active-text-color="#409EFF"
+            :unique-opened="true"
+            :collapse-transition="false"
+            :collapse="isCollapse"
+          >
+            <div v-for="item in menuList" :key="item.node">
+              <el-submenu :index="item.node">
+                <template slot="title">
+                  <i class="icon-title" :class="item.icon"></i>
+                  <span>{{ item.name }}</span>
+                </template>
+                <div v-for="sesstion in item.children" :key="sesstion.node">
+                  <el-menu-item :index="sesstion.node">{{
+                    sesstion.name
+                  }}</el-menu-item>
+                </div>
+              </el-submenu>
+            </div>
+          </el-menu>
+        </el-scrollbar>
+      </div>
+    </el-aside>
+  </div>
 </template>
 <script>
 export default {
@@ -58,6 +61,11 @@ export default {
       ],
     };
   },
+  computed: {
+    isCollapse() {
+      return this.$store.state.app.sidebar.opened;
+    },
+  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -76,9 +84,55 @@ export default {
   line-height: 200px;
 }
 
+.hideSidebar {
+  width: 54px;
+
+  .sidebar-container {
+    width: 54px;
+    transition-duration: 0.3s;
+    transform: translate3d(-54, 0, 0);
+    .el-scrollbar {
+      width: 54px;
+    }
+    .el-submenu {
+      overflow: hidden;
+
+      /deep/ .el-submenu__title {
+        padding: 0 !important;
+
+        .icon-title {
+          margin-left: 20px;
+          font-size: 14px;
+        }
+
+        .el-submenu__icon-arrow {
+          display: none;
+        }
+      }
+    }
+    .el-menu--collapse {
+      .el-submenu {
+        & > .el-submenu__title {
+          & > span {
+            height: 0;
+            width: 0;
+            overflow: hidden;
+            visibility: hidden;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
 .sidebar-container {
   background: #304156;
+  width: 200px;
   height: 100vh;
+
+  transition-duration: 0.3s;
+  transform: translate3d(54, 0, 0);
   .el-menu {
     border: none;
     height: 100%;
@@ -93,14 +147,20 @@ export default {
           }
         }
       }
-    }
+      .el-submenu__title {
+        span {
+          margin-left: 7px;
+          display: inline-block;
+          margin-top: 2px;
+        }
+      }
+      .el-menu-item {
+        background-color: #1f2d3d !important;
+        // background-color: #409eff !important;
 
-    .el-submenu .el-menu-item {
-      background-color: #1f2d3d !important;
-      // background-color: #409eff !important;
-
-      &:hover {
-        background-color: #001528 !important;
+        &:hover {
+          background-color: #001528 !important;
+        }
       }
     }
   }
