@@ -14,6 +14,7 @@ import HeaDer from "./header";
 import MaIn from "./main";
 import FooTer from "./footer";
 export default {
+  name: "Layout",
   components: {
     SiderBar,
     HeaDer,

@@ -53,14 +53,15 @@
 </template>
 <script>
 export default {
+  name: "Login",
   data() {
     return {
       loginForm: {
         username: "",
-        password: ""
-      }
+        password: "",
+      },
     };
-  }
+  },
 };
 </script>
 <style lang="scss">
