@@ -25,6 +25,11 @@ const routes = [
         name: "table",
         component: (resolve) => require(["@/views/table/table"], resolve),
       },
+      {
+        path: "systerm",
+        name: "系统设置",
+        component: (resolve) => require(["@/views/systerm/systerm"], resolve),
+      },
     ],
   },
 ];

@@ -1,5 +1,6 @@
 <template>
   <div :class="!App_ToggleSideBar ? 'hideSidebar' : ''">
+    <logo :collapse="!App_ToggleSideBar" />
     <el-aside width="auto">
       <div class="sidebar-container">
         <el-scrollbar wrap-class="scrollbar-wrapper">
@@ -38,7 +39,9 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import Logo from "./Logo";
 export default {
+  components: { Logo },
   data() {
     return {
       menuList: [
@@ -46,7 +49,7 @@ export default {
           name: "系统设置",
           node: "1",
           icon: "el-icon-setting",
-          children: [{ name: "首页", node: "1-1", path: "/dashboard" }],
+          children: [{ name: "系统设置", node: "1-1", path: "/systerm" }],
         },
         {
           name: "组件管理",
@@ -75,7 +78,10 @@ export default {
     },
     handSelect(item) {
       console.log(item);
-      this.$router.push(item.path);
+      const { path } = this.$route;
+      if (path != item.path) {
+        this.$router.push(item.path);
+      }
     },
   },
 };
