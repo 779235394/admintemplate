@@ -12,15 +12,18 @@ const routes = [
   },
   {
     path: "/",
-    // component: (resolve) => require(["@/views/layout/index"], resolve),
     component: Layout,
     redirect: "/dashboard",
     children: [
       {
         path: "dashboard",
         name: "Dashboard",
-        component: () => import("@/views/dashboard/index"),
-        // meta: { title: "Dashboard", icon: "dashboard" },
+        component: (resolve) => require(["@/views/dashboard/index"], resolve),
+      },
+      {
+        path: "table",
+        name: "table",
+        component: (resolve) => require(["@/views/table/table"], resolve),
       },
     ],
   },
@@ -30,6 +33,10 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  next();
 });
 
 export default router;

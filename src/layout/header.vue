@@ -2,7 +2,7 @@
   <div class="navbar">
     <hamburger
       id="hamburger-container"
-      :is-active="!sidebarOpened"
+      :is-active="App_ToggleSideBar"
       class="hamburger-container"
       @toggleClick="toggleSideBar"
     />
@@ -11,18 +11,18 @@
 <script>
 import Hamburger from "@/components/Hamburger";
 
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     Hamburger,
   },
   computed: {
-    sidebarOpened: function() {
-      return this.$store.state.app.sidebar.opened;
-    },
+    ...mapGetters("app", ["App_ToggleSideBar"]),
   },
   methods: {
     toggleSideBar() {
-      this.$store.dispatch("app/toggleSideBar");
+      this.$store.dispatch("app/toggleSideBar", !this.App_ToggleSideBar);
     },
   },
 };

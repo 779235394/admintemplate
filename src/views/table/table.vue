@@ -1,9 +1,5 @@
 <template>
-  <el-main>
-    <transition>
-      <router-view />
-    </transition>
-  </el-main>
+  <div>table组件</div>
 </template>
 <script>
 export default {};

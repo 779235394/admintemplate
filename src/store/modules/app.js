@@ -1,26 +1,26 @@
 const app = {
   namespaced: true,
   state: {
-    sidebar: {
-      opened: false,
-    },
+    sidebarOpen: JSON.parse(localStorage.getItem("sidebarOpen")),
   },
   mutations: {
-    TOGGLE_SIDEBAR: (state) => {
-      state.sidebar.opened = !state.sidebar.opened;
-      // if (state.sidebar.opened) {
-      //   Cookies.set('sidebarStatus', 1)
-      // } else {
-      //   Cookies.set('sidebarStatus', 0)
-      // }
+    TOGGLE_SIDEBAR: (state, payload) => {
+      state.sidebarOpen = payload;
     },
   },
   actions: {
-    toggleSideBar({ commit }) {
-      commit("TOGGLE_SIDEBAR");
+    toggleSideBar({ commit }, payload) {
+      commit("TOGGLE_SIDEBAR", payload);
+      localStorage.setItem("sidebarOpen", JSON.stringify(payload));
     },
   },
-  getters: {},
+  getters: {
+    App_ToggleSideBar(state) {
+      return (
+        state.sidebarOpen || JSON.parse(localStorage.getItem("sidebarOpen"))
+      );
+    },
+  },
 };
 
 export default app;

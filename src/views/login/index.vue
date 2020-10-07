@@ -82,7 +82,7 @@ export default {
   background-image: url("../../assets/loginform.jpg");
 }
 .bg2 {
-  background-image: url("../../assets/loginform2.png");
+  background-image: url("../../assets/loginform2.jpg");
 }
 .carousel-img {
   width: 100%;
@@ -90,17 +90,18 @@ export default {
   background-size: cover;
 }
 .login_box {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.1);
   width: 480px;
   height: 400px;
   padding: 36px;
   position: absolute;
-  right: 10%;
+  right: calc(50% - 240px);
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 1000;
+  box-shadow: 0 0 20px #d2cfcf;
 
   .avatar_box {
     padding: 10px;

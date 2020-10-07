@@ -1,10 +1,10 @@
 <template>
-  <div :class="isCollapse ? 'hideSidebar' : ''">
+  <div :class="!App_ToggleSideBar ? 'hideSidebar' : ''">
     <el-aside width="auto">
       <div class="sidebar-container">
         <el-scrollbar wrap-class="scrollbar-wrapper">
           <el-menu
-            default-active="1-1"
+            :default-active="activeMenu"
             @open="handleOpen"
             @close="handleClose"
             background-color="#304156"
@@ -12,7 +12,7 @@
             active-text-color="#409EFF"
             :unique-opened="true"
             :collapse-transition="false"
-            :collapse="isCollapse"
+            :collapse="!App_ToggleSideBar"
           >
             <div v-for="item in menuList" :key="item.node">
               <el-submenu :index="item.node">
@@ -21,9 +21,12 @@
                   <span>{{ item.name }}</span>
                 </template>
                 <div v-for="sesstion in item.children" :key="sesstion.node">
-                  <el-menu-item :index="sesstion.node">{{
-                    sesstion.name
-                  }}</el-menu-item>
+                  <el-menu-item
+                    :index="sesstion.path"
+                    @click.native="handSelect(sesstion)"
+                  >
+                    {{ sesstion.name }}
+                  </el-menu-item>
                 </div>
               </el-submenu>
             </div>
@@ -34,6 +37,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -42,28 +46,24 @@ export default {
           name: "系统设置",
           node: "1",
           icon: "el-icon-setting",
-          children: [
-            { name: "系统设置1", node: "1-1" },
-            { name: "系统设置2", node: "1-2" },
-          ],
+          children: [{ name: "首页", node: "1-1", path: "/dashboard" }],
         },
         {
           name: "组件管理",
           node: "2",
           icon: "el-icon-s-data",
-          children: [
-            { name: "组件管理1", node: "2-1" },
-            { name: "组件管理2", node: "2-2" },
-            { name: "组件管理3", node: "2-3" },
-            { name: "组件管理4", node: "2-4" },
-          ],
+          children: [{ name: "table组件", node: "2-1", path: "/table" }],
         },
       ],
     };
   },
   computed: {
-    isCollapse() {
-      return this.$store.state.app.sidebar.opened;
+    ...mapGetters("app", ["App_ToggleSideBar"]),
+    activeMenu() {
+      const route = this.$route;
+      const { path } = route;
+
+      return path;
     },
   },
   methods: {
@@ -72,6 +72,10 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    handSelect(item) {
+      console.log(item);
+      this.$router.push(item.path);
     },
   },
 };
