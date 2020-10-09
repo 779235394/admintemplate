@@ -17,18 +17,21 @@ const routes = [
     children: [
       {
         path: "dashboard",
-        name: "Dashboard",
+        name: "dashboard",
         component: (resolve) => require(["@/views/dashboard/index"], resolve),
+        meta: { title: "首页" },
       },
       {
         path: "table",
         name: "table",
         component: (resolve) => require(["@/views/table/table"], resolve),
+        meta: { title: "表格" },
       },
       {
         path: "systerm",
-        name: "系统设置",
+        name: "systerm",
         component: (resolve) => require(["@/views/systerm/systerm"], resolve),
+        meta: { title: "系统设置" },
       },
     ],
   },

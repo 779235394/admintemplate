@@ -5,14 +5,14 @@
         v-if="collapse"
         key="collapse"
         class="sidebar-logo-link"
-        to="/"
+        to="/dashboard"
       >
         <img v-if="logo" :src="logo" class="sidebar-logo" />
         <h1 v-else class="sidebar-title">{{ title }}</h1>
       </router-link>
     </transition>
     <transition name="sidebarLogoFade">
-      <router-link key="expand" class="sidebar-logo-link" to="/">
+      <router-link key="expand" class="sidebar-logo-link" to="/dashboard">
         <img v-if="logo" :src="logo" class="sidebar-logo" />
         <h1 class="sidebar-title">{{ title }}</h1>
       </router-link>

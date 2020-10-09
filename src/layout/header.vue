@@ -6,16 +6,19 @@
       class="hamburger-container"
       @toggleClick="toggleSideBar"
     />
+    <breadcrumb class="breadcrumb-container" />
   </div>
 </template>
 <script>
 import Hamburger from "@/components/Hamburger";
+import Breadcrumb from "@/components/Breadcrumb";
 
 import { mapGetters } from "vuex";
 
 export default {
   components: {
     Hamburger,
+    Breadcrumb,
   },
   computed: {
     ...mapGetters("app", ["App_ToggleSideBar"]),

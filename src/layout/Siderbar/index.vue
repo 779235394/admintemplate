@@ -49,7 +49,7 @@ export default {
           name: "系统设置",
           node: "1",
           icon: "el-icon-setting",
-          children: [{ name: "系统设置", node: "1-1", path: "/systerm" }],
+          children: [{ name: "系统设置", node: "1-2", path: "/systerm" }],
         },
         {
           name: "组件管理",
